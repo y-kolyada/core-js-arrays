@@ -20,9 +20,17 @@
  *    getIntervalArray(0, 100) => [ 0, 1, 2, ..., 100 ]
  *    getIntervalArray(3, 3) => [ 3 ]
  */
-function getIntervalArray(/* start, end */) {
-  throw new Error('Not implemented');
+function getIntervalArray(start, end) {
+  if (start > end) {
+    throw new Error('Invalid interval');
+  }
+  return Array.from({ length: end - start + 1 }, (_, i) => start + i);
 }
+
+// console.log(getIntervalArray(1, 5)); // [1, 2, 3, 4, 5]
+// console.log(getIntervalArray(-2, 2)); // [-2, -1, 0, 1, 2]
+// console.log(getIntervalArray(0, 100)); // [0, 1, 2, ..., 100]
+// console.log(getIntervalArray(3, 3)); // [3]
 
 /**
  * Returns a new array where each element is the sum of the corresponding elements
