@@ -84,9 +84,22 @@ function sumArrays(arr1, arr2) {
  *    findElement(['Array', 'Number', 'string'], 'Date') => -1
  *    findElement([0, 1, 2, 3, 4, 5], 5) => 5
  */
-function findElement(/* arr, value */) {
-  throw new Error('Not implemented');
+function findElement(arr, value) {
+  if (!Array.isArray(arr)) {
+    throw new Error('First argument must be an array');
+  }
+  if (arr.length === 0) {
+    return -1;
+  }
+  if (value === undefined || value === null || Number.isNaN(value)) {
+    return -1;
+  }
+  return arr.indexOf(value);
 }
+
+// console.log(findElement(['Ace', 10, true], 10)); // 1
+// console.log(findElement(['Array', 'Number', 'string'], 'Date')); // -1
+// console.log(findElement([0, 1, 2, 3, 4, 5], 5)); // 5
 
 /**
  * Returns a number of all occurrences of the specified item in an array.
@@ -102,9 +115,23 @@ function findElement(/* arr, value */) {
  *    findAllOccurrences([ null, undefined, null ], null) => 2
  *    findAllOccurrences([ true, 0, 1, 'true' ], true) => 1
  */
-function findAllOccurrences(/* arr, item */) {
-  throw new Error('Not implemented');
+function findAllOccurrences(arr, item) {
+  if (!Array.isArray(arr)) {
+    throw new Error('First argument must be an array');
+  }
+  if (item === undefined || Number.isNaN(item)) {
+    return 0;
+  }
+  return arr.reduce((count, current) => {
+    return count + (current === item ? 1 : 0);
+  }, 0);
 }
+
+// console.log(findAllOccurrences([0, 0, 1, 1, 1, 2], 1)); // 3
+// console.log(findAllOccurrences([1, 2, 3, 4, 5], 0)); // 0
+// console.log(findAllOccurrences(['a', 'b', 'c', 'c'], 'c')); // 2
+// console.log(findAllOccurrences([null, undefined, null], null)); // 2
+// console.log(findAllOccurrences([true, 0, 1, 'true'], true)); // 1
 
 /**
  * Removes falsy values from the specified array.
