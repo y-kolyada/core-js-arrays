@@ -334,7 +334,7 @@ function getHead(arr, n) {
  *
  * @param {any[]} arr - The input array.
  * @param {number} n - Number of items.
- * @return {any[]}
+ * @return {any[]} The n last items.
  *
  * @example
  *    getTail([ 1, 3, 4, 5 ], 2) => [ 4, 5 ]
@@ -359,16 +359,27 @@ function getTail(arr, n) {
  * are repeated twice using original order.
  *
  * @param {any[]} arr - The input array.
- * @return {any[]} - The doubled array.
+ * @return {any[]} The doubled array.
  *
  * @example
  *    doubleArray(['Ace', 10, true])  => ['Ace', 10, true, 'Ace', 10, true]
  *    doubleArray([0, 1, 2, 3, 4, 5]) => [0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5]
  *    doubleArray([]) => []
  */
-function doubleArray(/* arr */) {
-  throw new Error('Not implemented');
+function doubleArray(arr) {
+  if (!Array.isArray(arr)) {
+    throw new Error('First argument must be an array');
+  }
+  if (arr.length === 0) {
+    return [];
+  }
+
+  return arr.concat(arr);
 }
+
+// console.log(doubleArray(['Ace', 10, true])); // ['Ace', 10, true, 'Ace', 10, true]
+// console.log(doubleArray([0, 1, 2, 3, 4, 5])); // [0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5]
+// console.log(doubleArray([])); // []
 
 /**
  * Concatenates all elements from specified array into single string with ',' delimiter.
