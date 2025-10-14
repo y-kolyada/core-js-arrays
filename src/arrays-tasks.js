@@ -392,9 +392,16 @@ function doubleArray(arr) {
  *    toStringList([1, 2, 3, 4, 5]) => '1,2,3,4,5'
  *    toStringList(['rock', 'paper', 'scissors']) => 'rock,paper,scissors'
  */
-function toStringList(/* arr */) {
-  throw new Error('Not implemented');
+function toStringList(arr) {
+  if (!Array.isArray(arr)) {
+    throw new Error('First argument must be an array');
+  }
+  return arr.join(',');
 }
+
+// console.log(toStringList([0, false, 'cat', NaN, true, ''])); // '0,false,cat,NaN,true,'
+// console.log(toStringList([1, 2, 3, 4, 5])); // '1,2,3,4,5'
+// console.log(toStringList(['rock', 'paper', 'scissors'])); // 'rock,paper,scissors'
 
 /**
  * Returns array containing only unique values from the specified array.
