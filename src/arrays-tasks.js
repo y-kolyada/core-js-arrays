@@ -186,7 +186,7 @@ function getStringsLength(arr) {
  * The result should be rounded to two decimal places.
  *
  * @param {number[]} arr - The input array
- * @return {number} - The average of all items
+ * @return {number} The average of all items
  *
  * @example
  *   getAverage([]) => 0
@@ -194,16 +194,38 @@ function getStringsLength(arr) {
  *   getAverage([ -1, 1, -1, 1 ]) => 0
  *   getAverage([ 1, 10, 100, 1000 ])  => 277,75
  *   getAverage([ 2, 3, 3 ])  => 2,67
+ *   getAverage([ 2, 3, 3.1 ])  => 2,70
  */
 function getAverage(arr) {
-  throw new Error('Not implemented');
+  if (!Array.isArray(arr)) {
+    throw new Error('First argument must be an array');
+  }
+  if (arr.length === 0) {
+    return 0;
+  }
+
+  const sum = arr.reduce((acc, curr) => {
+    if (typeof curr !== 'number') {
+      throw new Error('Array must contain only numbers');
+    }
+    return acc + curr;
+  }, 0);
+
+  return parseFloat((sum / arr.length).toFixed(2));
 }
+
+// console.log(getAverage([])); // 0
+// console.log(getAverage([1, 2, 3])); // 2
+// console.log(getAverage([-1, 1, -1, 1])); // 0
+// console.log(getAverage([1, 10, 100, 1000])); // 277.75
+// console.log(getAverage([2, 3, 3])); // 2.67
+// console.log(getAverage([2, 3, 3.1])); // 2.70
 
 /**
  * Checks if all strings in an array have the same length.
  *
  * @param {string[]} arr - The array of strings to be checked.
- * @return {boolean} - True if all strings have the same length, false otherwise.
+ * @return {boolean} True if all strings have the same length, false otherwise.
  *
  * @example
  *    isSameLength(['orange', 'banana', 'cherry']) => true
