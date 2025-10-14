@@ -280,7 +280,7 @@ function isValueEqualsIndex(arr) {
  * @param {any[]} arr - The input array.
  * @param {any} item - The item to insert.
  * @param {number} index - Specified index.
- * @return {any[]}
+ * @return {any[]} The new array with the item inserted.
  *
  * @example
  *    insertItem([ 1, 3, 4, 5 ], 2, 1)  => [ 1, 2, 3, 4, 5 ]
@@ -295,16 +295,28 @@ function insertItem(/* arr, item, index */) {
  *
  * @param {any[]} arr - The input array.
  * @param {number} n - Number of items.
- * @return {any[]}
+ * @return {any[]} The n first items.
  *
  * @example
  *    getHead([ 1, 3, 4, 5 ], 2) => [ 1, 3 ]
  *    getHead([ 'a', 'b', 'c', 'd'], 3) => [ 'a', 'b', 'c' ]
  *    getHead([ 'a', 'b', 'c', 'd'], 0) => []
+ *    getHead([ 'a', 'b', 'c', 'd'], 6) => [ 'a', 'b', 'c', 'd' ]
  */
-function getHead(/* arr, n */) {
-  throw new Error('Not implemented');
+function getHead(arr, n) {
+  if (!Array.isArray(arr)) {
+    throw new Error('First argument must be an array');
+  }
+  if (typeof n !== 'number' || n < 0) {
+    throw new Error('Second argument must be a non-negative number');
+  }
+  return arr.slice(0, n);
 }
+
+// console.log(getHead([1, 3, 4, 5], 2)); // [1, 3]
+// console.log(getHead(['a', 'b', 'c', 'd'], 3)); // ['a', 'b', 'c']
+// console.log(getHead(['a', 'b', 'c', 'd'], 0)); // []
+// console.log(getHead(['a', 'b', 'c', 'd'], 6)); // ['a', 'b', 'c', 'd']
 
 /**
  * Returns the n last items of the specified array.
