@@ -275,7 +275,7 @@ function isValueEqualsIndex(arr) {
 // console.log(isValueEqualsIndex([10, 20, 30, 40, 50])); // false
 
 /**
- * Inserts the item into specified array at specified index.
+ * Inserts the item into specified array at specified index don't using slice.
  *
  * @param {any[]} arr - The input array.
  * @param {any} item - The item to insert.
@@ -286,9 +286,20 @@ function isValueEqualsIndex(arr) {
  *    insertItem([ 1, 3, 4, 5 ], 2, 1)  => [ 1, 2, 3, 4, 5 ]
  *    insertItem([ 1, 'b', 'c'], 'x', 0) => [ 'x', 1, 'b', 'c' ]
  */
-function insertItem(/* arr, item, index */) {
-  throw new Error('Not implemented');
+function insertItem(arr, item, index) {
+  if (!Array.isArray(arr)) {
+    throw new Error('First argument must be an array');
+  }
+  if (index < 0 || index > arr.length) {
+    throw new Error('Invalid index');
+  }
+
+  arr.splice(index, 0, item);
+  return arr;
 }
+
+// console.log(insertItem([1, 3, 4, 5], 2, 1)); // [1, 2, 3, 4, 5]
+// console.log(insertItem([1, 'b', 'c'], 'x', 0)); // ['x', 1, 'b', 'c']
 
 /**
  * Returns the n first items of the specified array.
