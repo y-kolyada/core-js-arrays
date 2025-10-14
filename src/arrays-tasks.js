@@ -231,9 +231,26 @@ function getAverage(arr) {
  *    isSameLength(['orange', 'banana', 'cherry']) => true
  *    isSameLength(['cat', 'dog', 'elephant']) => false
  */
-function isSameLength(/* arr */) {
-  throw new Error('Not implemented');
+function isSameLength(arr) {
+  if (!Array.isArray(arr)) {
+    throw new Error('First argument must be an array');
+  }
+  if (arr.length === 0) {
+    return true;
+  }
+
+  const firstItemLength = arr[0].length;
+
+  return arr.every((item) => {
+    if (typeof item !== 'string') {
+      throw new Error('Array must contain only strings');
+    }
+    return item.length === firstItemLength;
+  });
 }
+
+// console.log(isSameLength(['orange', 'banana', 'cherry'])); // true
+// console.log(isSameLength(['cat', 'dog', 'elephant'])); // false
 
 /**
  * Checks if there are elements in the array where the value is equal to its index.
