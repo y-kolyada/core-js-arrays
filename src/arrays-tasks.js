@@ -145,9 +145,16 @@ function findAllOccurrences(arr, item) {
  *    removeFalsyValues([ 1, 2, 3, 4, 5, 'false' ]) => [ 1, 2, 3, 4, 5, 'false' ]
  *    removeFalsyValues([ false, 0, NaN, '', undefined ]) => [ ]
  */
-function removeFalsyValues(/* arr */) {
-  throw new Error('Not implemented');
+function removeFalsyValues(arr) {
+  if (!Array.isArray(arr)) {
+    throw new Error('Argument must be an array');
+  }
+  return arr.filter(Boolean);
 }
+
+// console.log(removeFalsyValues([0, false, 'cat', NaN, true, ''])); // ['cat', true]
+// console.log(removeFalsyValues([1, 2, 3, 4, 5, 'false'])); // [1, 2, 3, 4, 5, 'false']
+// console.log(removeFalsyValues([false, 0, NaN, '', undefined])); // []
 
 /**
  * Returns an array containing the lengths of each string in a specified array of strings.
