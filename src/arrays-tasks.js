@@ -407,7 +407,7 @@ function toStringList(arr) {
  * Returns array containing only unique values from the specified array.
  *
  * @param {any[]} arr - The input array.
- * @return {any[]} - The array with unique values.
+ * @return {any[]} The array with unique values.
  *
  * @example
  *   distinct([ 1, 2, 3, 3, 2, 1 ]) => [ 1, 2, 3 ]
@@ -415,9 +415,17 @@ function toStringList(arr) {
  *   distinct([ 1, 1, 2, 2, 3, 3, 4, 4]) => [ 1, 2, 3, 4]
  *   distinct([]) => []
  */
-function distinct(/* arr */) {
-  throw new Error('Not implemented');
+function distinct(arr) {
+  if (!Array.isArray(arr)) {
+    throw new Error('First argument must be an array');
+  }
+  return Array.from(new Set(arr));
 }
+
+// console.log(distinct([1, 2, 3, 3, 2, 1])); // [1, 2, 3]
+// console.log(distinct(['a', 'a', 'a', 'a'])); // ['a']
+// console.log(distinct([1, 1, 2, 2, 3, 3, 4, 4])); // [1, 2, 3, 4]
+// console.log(distinct([])); // []
 
 /**
  * Creates an n-dimensional array and fills it with zeros.
