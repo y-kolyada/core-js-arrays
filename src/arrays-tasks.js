@@ -432,7 +432,7 @@ function distinct(arr) {
  *
  * @param {number} n - Depth of outter array (n > 0).
  * @param {number} size - Length of all arrays (size > 0).
- * @return {any[]} - The n-dimensional array filled with zeros.
+ * @return {any[]} The n-dimensional array filled with zeros.
  *
  * @example
  *    createNDimensionalArray(2, 3) => [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
@@ -440,8 +440,18 @@ function distinct(arr) {
  *    createNDimensionalArray(4, 2) => [[[[0, 0], [0, 0]], [[0, 0], [0, 0]]], [[[0, 0], [0, 0]], [[0, 0], [0, 0]]]]
  *    createNDimensionalArray(1, 1) => [0]
  */
-function createNDimensionalArray(/* n, size */) {
-  throw new Error('Not implemented');
+function createNDimensionalArray(n, size) {
+  if (n < 1 || size < 1) {
+    throw new Error('Both n and size must be greater than 0');
+  }
+
+  if (n === 1) {
+    return Array(size).fill(0);
+  }
+
+  return Array(size)
+    .fill(null)
+    .map(() => createNDimensionalArray(n - 1, size));
 }
 
 /**
