@@ -463,7 +463,7 @@ function createNDimensionalArray(n, size) {
  * Flattens a nested array into a single-level array.
  *
  * @param {any[]} nestedArray - The nested array to be flattened.
- * @return {any[]} - A single-level array.
+ * @return {any[]} A single-level array.
  *
  * @example
  *    flattenArray([1, [2, [3, 4], 5], 6]) => [1, 2, 3, 4, 5, 6]
@@ -502,9 +502,19 @@ function flattenArray(nestedArray) {
  *   selectMany([[1, 2], [3, 4], [5, 6]], (x) => x) =>   [ 1, 2, 3, 4, 5, 6 ]
  *   selectMany(['one','two','three'], (x) => x.split('')) =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
-function selectMany(/* arr, childrenSelector */) {
-  throw new Error('Not implemented');
+function selectMany(arr, childrenSelector) {
+  if (!Array.isArray(arr)) {
+    throw new Error('First argument must be an array');
+  }
+  if (typeof childrenSelector !== 'function') {
+    throw new Error('Second argument must be a function');
+  }
+
+  return arr.flatMap(childrenSelector);
 }
+
+// console.log(selectMany([[1, 2], [3, 4], [5, 6]], (x) => x)); // [1, 2, 3, 4, 5, 6]
+// console.log(selectMany(['one', 'two', 'three'], (x) => x.split(''))); // ['o','n','e','t','w','o','t','h','r','e','e']
 
 /**
  * Every month, you record your income and expenses.
