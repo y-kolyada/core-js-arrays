@@ -567,6 +567,10 @@ function createChunks(arr, chunkSize) {
   );
 }
 
+// console.log(createChunks([1, 2, 3, 4, 5, 6, 7], 3)); // [[1, 2, 3], [4, 5, 6], [7]]
+// console.log(createChunks(['a', 'b', 'c', 'd', 'e'], 2)); // [['a', 'b'], ['c', 'd'], ['e']]
+// console.log(createChunks([10, 20, 30, 40, 50], 1)); // [[10], [20], [30], [40], [50]]
+
 /**
  * Generates an array of odd numbers of the specified length.
  *
@@ -579,9 +583,17 @@ function createChunks(arr, chunkSize) {
  *    generateOdds(2) => [ 1, 3 ]
  *    generateOdds(5) => [ 1, 3, 5, 7, 9 ]
  */
-function generateOdds(/* len */) {
-  throw new Error('Not implemented');
+function generateOdds(len) {
+  if (typeof len !== 'number' || len < 0) {
+    throw new Error('Length must be a non-negative number');
+  }
+  return Array.from({ length: len }, (_, i) => 2 * i + 1);
 }
+
+// console.log(generateOdds(0)); // []
+// console.log(generateOdds(1)); // [1]
+// console.log(generateOdds(2)); // [1, 3]
+// console.log(generateOdds(5)); // [1, 3, 5, 7, 9]
 
 /**
  * Returns an element from the multidimensional array by the specified indices.
