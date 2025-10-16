@@ -529,9 +529,17 @@ function selectMany(arr, childrenSelector) {
  *   calculateBalance([ [ 10, 8 ], [ 1, 5 ] ])  => (10 - 8) + (1 - 5) = 2 + -4 = -2
  *   calculateBalance([]) => 0
  */
-function calculateBalance(/* arr */) {
-  throw new Error('Not implemented');
+function calculateBalance(arr) {
+  if (!Array.isArray(arr)) {
+    throw new Error('Input must be an array');
+  }
+
+  return arr.reduce((acc, [income, expense]) => acc + (income - expense), 0);
 }
+
+// console.log(calculateBalance([[10, 8], [5, 1]])); // 6
+// console.log(calculateBalance([[10, 8], [1, 5]])); // -2
+// console.log(calculateBalance([])); // 0
 
 /**
  * Breaks an array into chunks of the specified size.
