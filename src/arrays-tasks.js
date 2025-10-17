@@ -682,9 +682,22 @@ function getIdentityMatrix(n) {
  *    getIndicesOfOddNumbers([2, 4, 6, 8, 10]) => []
  *    getIndicesOfOddNumbers([11, 22, 33, 44, 55]) => [0, 2, 4]
  */
-function getIndicesOfOddNumbers(/* numbers */) {
-  throw new Error('Not implemented');
+function getIndicesOfOddNumbers(numbers) {
+  if (!Array.isArray(numbers)) {
+    throw new Error('First argument must be an array');
+  }
+
+  return numbers.reduce((indices, num, index) => {
+    if (num % 2 !== 0) {
+      indices.push(index);
+    }
+    return indices;
+  }, []);
 }
+
+// console.log(getIndicesOfOddNumbers([1, 2, 3, 4, 5])); // [0, 2, 4]
+// console.log(getIndicesOfOddNumbers([2, 4, 6, 8, 10])); // []
+// console.log(getIndicesOfOddNumbers([11, 22, 33, 44, 55])); // [0, 2, 4]
 
 /**
  * Returns the array of RGB Hex strings from the specified array of numbers.
