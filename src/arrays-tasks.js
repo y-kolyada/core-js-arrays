@@ -740,9 +740,22 @@ function getHexRGBValues(arr) {
  *   getMaxItems([ 10, 2, 7, 5, 3, -5 ], 3) => [ 10, 7, 5 ]
  *   getMaxItems([ 10, 10, 10, 10 ], 3) => [ 10, 10, 10 ]
  */
-function getMaxItems(/* arr, n */) {
-  throw new Error('Not implemented');
+function getMaxItems(arr, n) {
+  if (!Array.isArray(arr) || typeof n !== 'number' || n <= 0) {
+    throw new Error('Invalid input');
+  }
+
+  return arr
+    .slice()
+    .sort((a, b) => b - a)
+    .slice(0, n);
 }
+
+// console.log(getMaxItems([], 5)); // []
+// console.log(getMaxItems([1, 2], 1)); // [2]
+// console.log(getMaxItems([2, 3, 1], 2)); // [3, 2]
+// console.log(getMaxItems([10, 2, 7, 5, 3, -5], 3)); // [10, 7, 5]
+// console.log(getMaxItems([10, 10, 10, 10], 3)); // [10, 10, 10
 
 /**
  * Finds and returns an array containing only the common elements found in two arrays.
@@ -756,9 +769,18 @@ function getMaxItems(/* arr, n */) {
  *    findCommonElements(['a', 'b', 'c'], ['b', 'c', 'd']) => [ 'b', 'c' ]
  *    findCommonElements([1, 2, 3], ['a', 'b', 'c']) => []
  */
-function findCommonElements(/* arr1, arr2 */) {
-  throw new Error('Not implemented');
+function findCommonElements(arr1, arr2) {
+  if (!Array.isArray(arr1) || !Array.isArray(arr2)) {
+    throw new Error('Both arguments must be arrays');
+  }
+
+  const set2 = new Set(arr2);
+  return arr1.filter((item) => set2.has(item));
 }
+
+// console.log(findCommonElements([1, 2, 3], [2, 3, 4])); // [2, 3]
+// console.log(findCommonElements(['a', 'b', 'c'], ['b', 'c', 'd'])); // ['b', 'c']
+// console.log(findCommonElements([1, 2, 3], ['a', 'b', 'c'])); // []
 
 /**
  * Finds the length of the longest increasing and uninterrupted subsequence of a given array of integers.
