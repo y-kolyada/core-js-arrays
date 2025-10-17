@@ -709,9 +709,22 @@ function getIndicesOfOddNumbers(numbers) {
  *    getHexRGBValues([ 0, 255, 16777215]) => [ '#000000', '#0000FF', '#FFFFFF' ]
  *    getHexRGBValues([]) => []
  */
-function getHexRGBValues(/* arr */) {
-  throw new Error('Not implemented');
+function getHexRGBValues(arr) {
+  if (!Array.isArray(arr)) {
+    throw new Error('First argument must be an array');
+  }
+
+  return arr.map((num) => {
+    if (typeof num !== 'number' || num < 0 || num > 16777215) {
+      throw new Error('Array must contain numbers in the range 0 to 16777215');
+    }
+    const hex = num.toString(16).toUpperCase().padStart(6, '0');
+    return `#${hex}`;
+  });
 }
+
+// console.log(getHexRGBValues([0, 255, 16777215])); // ['#000000', '#0000FF', '#FFFFFF']
+// console.log(getHexRGBValues([])); // []
 
 /**
  * Returns the n largest values from the specified array
