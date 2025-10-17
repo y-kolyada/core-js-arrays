@@ -866,9 +866,34 @@ function shiftArray(arr, n) {
  *   sortDigitNamesByNumericOrder([ 'nine','eight','nine','eight' ]) => [ 'eight','eight','nine','nine']
  *   sortDigitNamesByNumericOrder([ 'one','one','one','zero' ]) => [ 'zero','one','one','one' ]
  */
-function sortDigitNamesByNumericOrder(/* arr */) {
-  throw new Error('Not implemented');
+function sortDigitNamesByNumericOrder(arr) {
+  if (!Array.isArray(arr)) {
+    throw new Error('First argument must be an array');
+  }
+
+  const digitOrder = [
+    'zero',
+    'one',
+    'two',
+    'three',
+    'four',
+    'five',
+    'six',
+    'seven',
+    'eight',
+    'nine',
+  ];
+
+  return arr
+    .slice()
+    .sort((a, b) => digitOrder.indexOf(a) - digitOrder.indexOf(b));
 }
+
+// console.log(sortDigitNamesByNumericOrder([])); // []
+// console.log(sortDigitNamesByNumericOrder(['nine', 'one'])); // ['one', 'nine']
+// console.log(sortDigitNamesByNumericOrder(['one', 'two', 'three'])); // ['one', 'two', 'three']
+// console.log(sortDigitNamesByNumericOrder(['nine', 'eight', 'nine', 'eight'])); // ['eight', 'eight', 'nine', 'nine']
+// console.log(sortDigitNamesByNumericOrder(['one', 'one', 'one', 'zero'])); // ['zero', 'one', 'one', 'one']
 
 /**
  * Swaps the head and tail of the specified array:
