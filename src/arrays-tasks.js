@@ -627,9 +627,17 @@ function getElementByIndices(arr, indices) {
  *  getFalsyValuesCount([ -1, 'false', null, 0 ]) => 2
  *  getFalsyValuesCount([ null, undefined, NaN, false, 0, '' ]) => 6
  */
-function getFalsyValuesCount(/* arr */) {
-  throw new Error('Not implemented');
+function getFalsyValuesCount(arr) {
+  if (!Array.isArray(arr)) {
+    throw new Error('First argument must be an array');
+  }
+  return arr.reduce((count, item) => count + (item ? 0 : 1), 0);
 }
+
+// console.log(getFalsyValuesCount([])); // 0
+// console.log(getFalsyValuesCount([1, '', 3])); // 1
+// console.log(getFalsyValuesCount([-1, 'false', null, 0])); // 2
+// console.log(getFalsyValuesCount([null, undefined, NaN, false, 0, ''])); // 6
 
 /**
  * Creates an identity matrix of the specified size.
