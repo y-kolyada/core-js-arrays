@@ -657,9 +657,19 @@ function getFalsyValuesCount(arr) {
  *                              [0,0,0,1,0],
  *                              [0,0,0,0,1]]
  */
-function getIdentityMatrix(/* n */) {
-  throw new Error('Not implemented');
+function getIdentityMatrix(n) {
+  if (typeof n !== 'number' || n <= 0) {
+    throw new Error('Size must be a positive number');
+  }
+
+  return Array.from({ length: n }, (_, i) =>
+    Array.from({ length: n }, (__, j) => (i === j ? 1 : 0))
+  );
 }
+
+// console.log(getIdentityMatrix(1)); // [[1]]
+// console.log(getIdentityMatrix(2)); // [[1,0],[0,1]]
+// console.log(getIdentityMatrix(5)); // [[1,0,0,0,0],[0,1,0,0,0],[0,0,1,0,0],[0,0,0,1,0],[0,0,0,0,1]]
 
 /**
  * Returns an array containing indices of odd elements in the input array.
