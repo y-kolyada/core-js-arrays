@@ -944,9 +944,34 @@ function sortDigitNamesByNumericOrder(arr) {
  *   swapHeadAndTail([]) => []
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
+function swapHeadAndTail(arr) {
+  if (!Array.isArray(arr)) {
+    throw new Error('First argument must be an array');
+  }
+
+  const len = arr.length;
+  const mid = Math.floor(len / 2);
+
+  if (len === 0) {
+    return [];
+  }
+
+  if (len % 2 === 0) {
+    const head = arr.slice(0, mid);
+    const tail = arr.slice(mid);
+    return tail.concat(head);
+  }
+  const head = arr.slice(0, mid);
+  const middle = arr[mid];
+  const tail = arr.slice(mid + 1);
+  return tail.concat([middle], head);
 }
+
+// console.log(swapHeadAndTail([1, 2, 3, 4, 5])); // [4, 5, 3, 1, 2]
+// console.log(swapHeadAndTail([1, 2])); // [2, 1]
+// console.log(swapHeadAndTail([1, 2, 3, 4, 5, 6, 7, 8])); // [5, 6, 7, 8, 1, 2, 3, 4]
+// console.log(swapHeadAndTail([1])); // [1]
+// console.log(swapHeadAndTail([])); // []
 
 module.exports = {
   getIntervalArray,
